@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+final appName = 'FlutterTut';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Blaat',
+      title: appName,
       home: RandomWords(),
     );
   }
@@ -29,9 +32,9 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("sasp"),
+        title: Text(appName),
       ),
-      body:_buildSuggestions(),
+      body: _buildSuggestions(),
     );
   }
 
@@ -51,10 +54,20 @@ class RandomWordsState extends State<RandomWords> {
 
   Widget _buildRow(WordPair pair) {
     return ListTile(
+      onTap: () => _launchURL(pair),
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
     );
+  }
+}
+
+_launchURL(WordPair pair) async {
+  var url = "https://www.google.nl/search?q=${pair.first}+${pair.second}";
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
