@@ -21,4 +21,5 @@ samples, guidance on mobile development, and a full API reference.
 `flutter build web`
 
 Install peanut for publishing: `flutter pub global activate peanut`
+Get packages: `flutter get`
 Publishing: `flutter pub global run peanut:peanut`
