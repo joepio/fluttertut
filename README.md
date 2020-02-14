@@ -19,3 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 
 `flutter run -d chrome`
 `flutter build web`
+
+Install peanut for publishing: `flutter pub global activate peanut`
+Publishing: `flutter pub global run peanut:peanut`
